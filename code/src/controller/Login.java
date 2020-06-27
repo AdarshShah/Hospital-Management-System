@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 		if((role=DBConnection.isLoggedIn(username, password))==null) {
 			response.sendRedirect("error.html");
 		}
-		
+		else {
 		DBConnection.LoggedInTime(username, password);
 		HttpSession session = request.getSession(true);
 		session.setAttribute("username",username);
@@ -57,6 +57,7 @@ public class Login extends HttpServlet {
 				break;
 		}
 		rd.forward(request, response);
+		}
 	}
 
 }
