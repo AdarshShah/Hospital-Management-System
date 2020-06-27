@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		String role=null;
 		if((role=DBConnection.isLoggedIn(username, password))==null) {
-			response.sendRedirect("error.html");
+			response.sendRedirect("index_error.html");
 		}
 		else {
 		DBConnection.LoggedInTime(username, password);
