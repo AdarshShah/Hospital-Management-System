@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hospital Management System</title>
+	<link rel="stylesheet" type="text/css" href="../css/style_error.css">
+</head>
+<body>
+	<div class="head">
+		<h1>Hospital Management System</h1>
+	</div>
+	<form class="login-tab" action="/" method="post">
+			<h2> Login </h2>
+			
+			<p>Username<sup>*</sup>: 
+				<input type="text" name="username" placeholder="Username..."  required />
+			</p>
+			
+			<p>Password<sup>*</sup>: 
+				<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password" placeholder="Password..."  required minlength="8" />
+			</p>
+			
+			<p class="wrong-cred">*Invalid Credentials</p>
+			
+			<button class="btn" type="Submit">Submit</button><br>
+	</form>
+	
+</body>
+</html>

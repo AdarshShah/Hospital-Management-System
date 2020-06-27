@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Hospital Management System</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-	<div class="wrap">
-	<h1>Login Form</h1>
-	<form action="../Login" method="post">
-		<input type="text" name="username" placeholder="username" required>
-		<input type="password" name="password" placeholder="password" required>
-		<p><button>Submit</button></p>
+	<div class="head">
+		<h1>Hospital Management System</h1>
+	</div>
+	<form class="login-tab" action="index_error.html" method="post">
+			<h2> Login </h2>
+			
+			<p>Username<sup>*</sup>: 
+				<input type="text" name="username" placeholder="Username..."  required />
+			</p>
+			
+			<p>Password<sup>*</sup>: 
+				<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password" placeholder="Password..."  required minlength="8" />
+			</p>
+			
+			<button class="btn" type="Submit">Submit</button><br>
 	</form>
 	
-	</div>
-
 </body>
 </html>
