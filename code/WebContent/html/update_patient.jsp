@@ -30,11 +30,12 @@
 
 
 			<li>
-				<select class="functions">
-					<option value="Register"><a href="create_patient.jsp"></a>To Register</option>
-					<option value="Delete"><a href="delete_patient.jsp"></a>To Delete</option>
-				</select>
+				<form action="create_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Register</button></form>
 			</li>
+			<li>
+				<form action="delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
+			</li>
+
 
 		</ul>
 	</div>

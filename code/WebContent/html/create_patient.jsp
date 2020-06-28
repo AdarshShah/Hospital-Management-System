@@ -30,10 +30,10 @@
 
 
 			<li>
-				<select class="functions">
-					<option value="Update"><a href="update_patient.jsp"></a>To Update</option>
-					<option value="Delete"><a href="delete_patient.jsp"></a>To Delete</option>
-				</select>
+				<form action="update_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Update</button></form>
+			</li>
+			<li>
+				<form action="delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
 			</li>
 
 		</ul>
