@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Delete Patient</title>
-	<link rel="stylesheet" type="text/css" href="/css/create_patient.css">
+	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/create_patient.css">
 </head>
 <body>
 	<div class="head">
@@ -31,11 +31,12 @@
 
 
 			<li>
-				<select class="functions">
-					<option value="Register"><a href="./create_patient.jsp">To Register</a></option>
-					<option value="Update"><a href="./update_patient.jsp">To Update</a></option>
-				</select>
+				<form action="create_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Register</button></form>
 			</li>
+			<li>
+				<form action="update_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Update</button></form>
+			</li>
+
 
 		</ul>
 	</div>

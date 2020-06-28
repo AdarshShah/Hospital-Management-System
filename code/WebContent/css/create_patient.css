@@ -4,6 +4,9 @@
 	width: 100px;
 	height: 35px;
 }
+#func1, #func2{
+	margin: 10px 0px 10px 0px;
+}
 .select-menu{
 	background-color: #3498DB;
 	width: 120px;
