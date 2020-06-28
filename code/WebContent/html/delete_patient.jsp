@@ -36,6 +36,9 @@
 			<li>
 				<form action="/HospitalManagementSystem/html/update_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Update</button></form>
 			</li>
+			<li>
+				<form action="/HospitalManagementSystem/html/patient_search.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Search</button></form>
+			</li>
 
 
 		</ul>
