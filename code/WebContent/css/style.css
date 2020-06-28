@@ -1,47 +1,46 @@
-.login-tab {
+.login-tab{
 	width: 30%;
 	margin: 8% auto 0 auto;
 	padding-top: 0px;
 	border: 2px solid black;
 	text-align: center;
 }
-
-.head {
+.head{
 	border: 2px solid black;
 	text-align: center;
 	padding-bottom: 5%;
 	background-color: #83C8F2;
 }
-
-.btn:hover {
+.btn:hover{
 	cursor: pointer;
 }
-
-.btn {
+.btn{
 	padding: 10px 15px;
 	margin: 10px 0px;
 	background-color: black;
-	border: 1px solid black;
+	border : 1px solid black;
 	border-radius: 10px;
 	color: white;
 	font-size: 12px;
 	font-weight: bold;
 }
-
-h1 {
+.wrong-cred{
+	color: red;
+	font-size: 15px;
+	font-weight: bolder;
+	margin-bottom: 0px;
+}
+h1{
 	margin: 0;
 }
-
-h2 {
+h2{
 	margin-top: 2px;
 }
-
-input {
+input{
 	margin-left: 20px;
 	padding-left: 5px;
 }
-
-body {
+body{
 	margin: 0;
 	background-color: #3498DB;
 }
