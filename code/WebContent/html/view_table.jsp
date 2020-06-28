@@ -1,3 +1,5 @@
+<%@page import="dao.DBConnection"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -39,13 +41,17 @@
 <td> DOJ</td>
 <td> type of room</td>
 </tr>
+<% 
+	ResultSet rs = DBConnection.getAllPatients();
+	while(rs.next()){
+%>
 <tr>
-<td> 1234</td>
-<td>Joseph</td>
-<td>56</td>
-<td>Rick Street_Ameertpet, Hyderabad</td>
-<td>03-May-2020</td>
-<td>single</td>
+<td><%=rs.getInt(1) %></td>
+<td><%=rs.getString(2) %></td>
+<td><%=rs.getInt(6) %></td>
+<td><%= rs.getString(3)+", "+ rs.getString("city")+","+rs.getString("state") %></td>
+<td><%=rs.getString(7) %></td>
+<td><%=rs.getString(8) %></td>
 </tr>
-
+<% }; %>
 </table>

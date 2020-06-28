@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class Login
  */
-@WebFilter({"/Administrator","/html/create_patient.jsp","/html/delete_patient.jsp","/html/update_patient.jsp"})
+@WebFilter({"/Administrator","/html/create_patient.jsp","/html/delete_patient.jsp","/html/update_patient.jsp","/html/view_table.jsp"})
 public class Login implements Filter {
 
 	/**

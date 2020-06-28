@@ -124,4 +124,41 @@ public class DBConnection {
 		}		
 		return null;
 	}
+	
+	public static ResultSet getAllPatients() {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM patient;");
+			ResultSet rs = stmt.executeQuery();
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
+	public static ResultSet[] getBillDetails(int patient_id) {
+		ResultSet rs[] = new ResultSet[3];
+		
+		rs[0] = searchPatient(patient_id);
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT medicine_name, quantity, rate, medicine_name*rate  FROM patient natural join patient_medicine natural join medicine;");
+			stmt.setInt(1, patient_id);
+			rs[1] = stmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT test_name, rate  FROM patient natural join patient_diagnostic natural join diagnostic;");
+			stmt.setInt(1, patient_id);
+			rs[2] = stmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }
