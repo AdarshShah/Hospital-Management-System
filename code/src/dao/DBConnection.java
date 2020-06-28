@@ -81,7 +81,7 @@ public class DBConnection {
 
 	public static boolean updatePatient(int patient_id, String patient_name, String address,String city,String state,int age, String date_of_joining,String room_type) {
 		try{
-			PreparedStatement stmt = conn.prepareStatement("UPDATE PATIENT SET patient_name = ? ,address = ? ,city = ? " + 
+			PreparedStatement stmt = conn.prepareStatement("UPDATE PATIENT SET patient_name = ? ,address = ? ,city = ? ," + 
 					"    state = ?,age = ?, date_of_joining = ?, room_type = ? WHERE patient_id = ?");
 			stmt.setInt(8, patient_id);
 			stmt.setString(1, patient_name);
@@ -117,7 +117,6 @@ public class DBConnection {
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM patient WHERE patient_id = ?;");
 			stmt.setInt(1, patient_id);
 			ResultSet rs = stmt.executeQuery();
-			System.out.println("found patient");
 			return rs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

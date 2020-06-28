@@ -31,10 +31,10 @@
 
 
 			<li>
-				<form action="create_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Register</button></form>
+				<form action="/HospitalManagementSystem/html/create_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Register</button></form>
 			</li>
 			<li>
-				<form action="delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
+				<form action="/HospitalManagementSystem/html/delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
 			</li>
 
 
@@ -118,7 +118,7 @@
 			</tbody>
 		</table>
 		<input type="hidden" value="update" name="function">
-		<button class="btn" type="Submit">Update</button>
+		<button class="btn" type="Submit" name="update" value="update">Update</button>
 		<button class="btn" type="Reset">Reset</button><br>
 	</form>
 </body>

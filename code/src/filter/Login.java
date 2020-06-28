@@ -42,7 +42,7 @@ public class Login implements Filter {
 		// place your code here
 		HttpSession session = ((HttpServletRequest) request).getSession(false);
 		if (session == null) {
-			RequestDispatcher rd = ((HttpServletRequest) request).getRequestDispatcher("index.html");
+			RequestDispatcher rd = ((HttpServletRequest) request).getRequestDispatcher("/html/index.html");
 			rd.forward(request, response);
 		}
 		// pass the request along the filter chain

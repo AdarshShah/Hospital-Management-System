@@ -30,10 +30,10 @@
 
 
 			<li>
-				<form action="update_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Update</button></form>
+				<form action="/HospitalManagementSystem/html/update_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Update</button></form>
 			</li>
 			<li>
-				<form action="delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
+				<form action="/HospitalManagementSystem/html/delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
 			</li>
 
 		</ul>

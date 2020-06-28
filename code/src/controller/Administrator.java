@@ -103,7 +103,7 @@ public class Administrator extends HttpServlet {
 			}
 		}
 		
-		
+		if(request.getParameter("update")!=null) {
 		int patient_id; String patient_name, address, city, state;
 		int age;
 		String date_of_joining;
@@ -124,15 +124,15 @@ public class Administrator extends HttpServlet {
 		address = request.getParameter("address")==null?rs.getString("address"):request.getParameter("address");
 		state = request.getParameter("State")==null?rs.getString("state"):request.getParameter("State");
 		city = request.getParameter("city")==null?rs.getString("city"):request.getParameter("city");
-		if(DBConnection.createPatient(patient_id, patient_name, address, city, state, age, date_of_joining, room_type)) {
-			request.setAttribute("message","Patient created successfully");
+		if(DBConnection.updatePatient(patient_id, patient_name, address, city, state, age, date_of_joining, room_type)) {
+			request.setAttribute("message","Patient updated successfully");
 		}else {
-			request.setAttribute("message","Patient already exists");
+			request.setAttribute("message","Patient is not updated");
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("html/update_patient.jsp");
 		rd.forward(request, response);
 		}
-		
+		}
 	}
 
 	private void createPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
