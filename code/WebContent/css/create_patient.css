@@ -1,0 +1,62 @@
+.functions{
+	background-color: black;
+	color: white;
+	width: 100px;
+	height: 35px;
+}
+.select-menu{
+	background-color: #3498DB;
+	width: 120px;
+	height: 25px;
+}
+.reg-tab{
+	width: 30%;
+	margin: 2% auto 0 auto;
+	padding-top: 0px;
+	text-align: center;
+}
+.head{
+	border: 2px solid black;
+	text-align: center;
+	background-color: #83C8F2;
+}
+.btn:hover{
+	cursor: pointer;
+}
+
+.btn{
+	padding: 10px 15px;
+	margin: 10px 55px 10px 5px;
+	background-color: black;
+	border : 1px solid black;
+	border-radius: 10px;
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+}
+body{
+	margin: 0;
+	background-color: #3498DB;
+}
+h1{
+	margin: 0;
+}
+li{
+	display: inline-block;
+	margin: 0 3%;
+}
+table{
+	border-spacing: 10px;
+}
+
+h2{
+	margin-top: 2px;
+	margin-bottom: 2%;
+	text-align: center;
+}
+td{
+	text-align: left;
+	border-spacing: 5px;
+}
+
+

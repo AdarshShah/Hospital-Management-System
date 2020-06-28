@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%> 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create Patient</title>
+	<title>Update Patient</title>
 	<link rel="stylesheet" type="text/css" href="../css/create_patient.css">
 </head>
 <body>
@@ -31,7 +31,7 @@
 
 			<li>
 				<select class="functions">
-					<option value="Update"><a href="update_patient.jsp"></a>To Update</option>
+					<option value="Register"><a href="create_patient.jsp"></a>To Register</option>
 					<option value="Delete"><a href="delete_patient.jsp"></a>To Delete</option>
 				</select>
 			</li>
@@ -39,31 +39,30 @@
 		</ul>
 	</div>
 	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
-	<form class="reg-tab" action="<%= request.getContextPath()%>/register_patient" method="post">
+	<form class="reg-tab" action="<%= request.getContextPath()%>/update_patient" method="post">
 		<table>
 			<thead>
-					<th colspan="2"><h2> Patient Registration </h2></th>
-			
+					<th colspan="2"><h2>Update Patient </h2></th>
 			</thead>
 			<tbody>
 				<tr>
-					<td>Patient SSN ID<sup>*</sup>:</td>
-					<td><input type="text" name="ssn_id"  required /></td>
+					<td>Patient ID<sup>*</sup>:</td>
+					<td><input type="text" name="ssn_id"  required /><button class="getbtn btn">Get</button></td>
 				</tr>
 				<tr>
-					<td>Patient Name<sup>*</sup>: </td>
-					<td><input type="text" name="patient_name"  required /></td>
+					<td>Patient Name: </td>
+					<td><input type="text" name="patient_name"   /></td>
 				</tr>
 				<tr>
-					<td>Patient Age<sup>*</sup>: </td>
-					<td><input type="number" name="patient_age"  required /></td>
+					<td>Patient Age: </td>
+					<td><input type="number" name="patient_age" /></td>
 				</tr>
 				<tr>
-					<td>Date of Admission<sup>*</sup>:</td>
+					<td>Date of Admission:</td>
 					<td><input type="Date" name="date_admission" required /></td>
 				</tr>
 				<tr>
-					<td>Type of Bed<sup>*</sup>:</td>
+					<td>Type of Bed:</td>
 					<td>
 						<select name="beds">
 							<option disabled selected>Select..</option>
@@ -75,12 +74,12 @@
 				</tr>
 
 				<tr>
-					<td>Address<sup>*</sup>: </td>
-					<td><textarea name="address" rows="4" cols="30" required></textarea></td>
+					<td>Address: </td>
+					<td><textarea name="address" rows="4" cols="30" ></textarea></td>
 				</tr>
 
 				<tr>
-					<td>State<sup>*</sup>:</td>
+					<td>State:</td>
 					<td>
 						<select name="State">
 							<option disabled selected>Select..</option>
@@ -92,14 +91,14 @@
 				</tr>
 
 				<tr>
-					<td>City<sup>*</sup>: </td>
-					<td><input type="text" name="city"  required /></td>
+					<td>City: </td>
+					<td><input type="text" name="city"   /></td>
 				</tr>
 
 			</tbody>
 		</table>
 		<input type="hidden" value="create" name="function">
-		<button class="btn" type="Submit">Submit</button>
+		<button class="btn" type="Submit">Update</button>
 		<button class="btn" type="Reset">Reset</button><br>
 	</form>
 </body>
