@@ -53,4 +53,24 @@ public class DBConnection {
 			e.printStackTrace();
 		}		
 	}
+	
+	public static boolean createPatient(int patient_id, String patient_name, String address,String city,String state,int age, String date_of_joining,String room_type) {
+		try(Connection conn = getConnection()){
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO PATIENT VALUES(?,?,?,?,?,?,?,?)");
+			stmt.setInt(1, patient_id);
+			stmt.setString(2, patient_name);
+			stmt.setString(3, address);
+			stmt.setString(4, city);
+			stmt.setString(5, state);
+			stmt.setInt(6, age);
+			stmt.setString(7,date_of_joining);
+			stmt.setString(8,room_type);
+			return stmt.executeUpdate()>0?true:false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }

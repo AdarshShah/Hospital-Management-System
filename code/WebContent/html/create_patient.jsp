@@ -29,7 +29,8 @@
 			</li>
 		</ul>
 	</div>
-	<form class="reg-tab" action="<%= request.getContextPath()%>/register_patient" method="post">
+	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
+	<form class="reg-tab" action="Administrator" method="post">
 		<table>
 			<thead>
 					<tr>
@@ -58,9 +59,9 @@
 					<td>
 						<select name="beds">
 							<option disabled selected>Select..</option>
-							<option value="general_ward">General Ward</option>
-							<option value="semi_sharing">Semi Sharing</option>
-							<option value="single_room">Single Room</option>
+							<option value="general">General Ward</option>
+							<option value="semi">Semi Sharing</option>
+							<option value="single">Single Room</option>
 						</select>
 					</td>
 				</tr>
@@ -85,17 +86,13 @@
 				<tr>
 					<td>City<sup>*</sup>: </td>
 					<td>
-						<select name="City">
-							<option disabled selected>Select..</option>
-							<option value="general_ward">General Ward</option>
-							<option value="semi_sharing">Semi Sharing</option>
-							<option value="single_room">Single Room</option>
-						</select>
+						<td><input type="text" name="city"  required /></td>
 					</td>
 				</tr>
 
 			</tbody>
 		</table>
+		<input type="hidden" value="create" name="function">
 		<button class="btn" type="Submit">Submit</button>
 		<button class="btn" type="Reset">Reset</button><br>
 			

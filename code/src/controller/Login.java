@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 		RequestDispatcher rd=null;
 		switch(role.trim().toLowerCase()) {
 			case "administrator":
-				rd = request.getRequestDispatcher("admin.html");
+				rd = request.getRequestDispatcher("html/create_patient.jsp");
 				break;
 			case "pharmacist":
 				rd = request.getRequestDispatcher("pharm.html");

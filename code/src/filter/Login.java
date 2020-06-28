@@ -16,15 +16,15 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class Login
  */
-@WebFilter("/Random")
+@WebFilter({"/Administrator","/html/create_patient.jsp"})
 public class Login implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public Login() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public Login() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -36,12 +36,13 @@ public class Login implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		HttpSession session = ((HttpServletRequest)request).getSession(false);
-		if(session==null) {
-			RequestDispatcher rd = ((HttpServletRequest)request).getRequestDispatcher("index.html");
+		HttpSession session = ((HttpServletRequest) request).getSession(false);
+		if (session == null) {
+			RequestDispatcher rd = ((HttpServletRequest) request).getRequestDispatcher("index.html");
 			rd.forward(request, response);
 		}
 		// pass the request along the filter chain
