@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Create Patient</title>
-	<link rel="stylesheet" type="text/css" href="../css/create_patient.css">
+	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/create_patient.css">
 </head>
 <body>
 	<div class="head">
@@ -31,15 +31,15 @@
 
 			<li>
 				<select class="functions">
-					<option value="Update"><a href="update_patient.jsp"></a>To Update</option>
-					<option value="Delete"><a href="delete_patient.jsp"></a>To Delete</option>
+					<a href="/HospitalManagementSystem/html/update_patient.jsp"><option value="Update">To Update</option></a>
+					<option value="Delete"><a href="/HospitalManagementSystem/html/delete_patient.jsp">To Delete</a></option>
 				</select>
 			</li>
 
 		</ul>
 	</div>
 	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
-	<form class="reg-tab" action="<%= request.getContextPath()%>/register_patient" method="post">
+	<form class="reg-tab" action="/HospitalManagementSystem/Administrator" method="post">
 		<table>
 			<thead>
 					<th colspan="2"><h2> Patient Registration </h2></th>

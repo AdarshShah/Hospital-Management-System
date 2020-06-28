@@ -2,7 +2,7 @@ create table if not exists
 	userstore (
 			login varchar(20) primary key, 
             password varchar(20), 
-            logintime timestamp, 
+            logintime varchar(20), 
             role enum('administrator','pharmacist','diagnostitian')
 		);
 

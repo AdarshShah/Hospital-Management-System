@@ -10,8 +10,9 @@ import java.sql.Timestamp;
 
 public class DBConnection {
 	
-	public static Connection getConnection() {
-		Connection conn=null;
+	static Connection conn;
+	
+	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -24,11 +25,15 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return conn;
+	
+	}
+	
+	public static Connection getConnection() {
+			return conn;
 	}
 	
 	public static String isLoggedIn(String username,String password) {
-		try(Connection conn = getConnection()){
+		try{
 			PreparedStatement stmt = conn.prepareStatement("SELECT role FROM USERSTORE WHERE LOGIN = ? AND PASSWORD = ?;");
 			stmt.setString(1, username);
 			stmt.setString(2, password);
@@ -43,9 +48,9 @@ public class DBConnection {
 	}
 	
 	public static void LoggedInTime(String username,String password) {
-		try(Connection conn = getConnection()){
+		try{
 			PreparedStatement stmt = conn.prepareStatement("UPDATE USERSTORE SET logintime = ? WHERE login like ?");
-			stmt.setTimestamp(1, new Timestamp(new Date(0).getTime()));
+			stmt.setString(1, new Date(0).toGMTString());
 			stmt.setString(2, username);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -55,7 +60,7 @@ public class DBConnection {
 	}
 	
 	public static boolean createPatient(int patient_id, String patient_name, String address,String city,String state,int age, String date_of_joining,String room_type) {
-		try(Connection conn = getConnection()){
+		try{
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO PATIENT VALUES(?,?,?,?,?,?,?,?)");
 			stmt.setInt(1, patient_id);
 			stmt.setString(2, patient_name);
@@ -75,7 +80,7 @@ public class DBConnection {
 	}
 
 	public static boolean updatePatient(int patient_id, String patient_name, String address,String city,String state,int age, String date_of_joining,String room_type) {
-		try(Connection conn = getConnection()){
+		try{
 			PreparedStatement stmt = conn.prepareStatement("UPDATE PATIENT SET patient_name = ? ,address = ? ,city = ? " + 
 					"    state = ?,age = ?, date_of_joining = ?, room_type = ? WHERE patient_id = ?");
 			stmt.setInt(8, patient_id);
@@ -96,7 +101,7 @@ public class DBConnection {
 	}
 
 	public static boolean deletePatient(int patient_id) {
-		try(Connection conn = getConnection()){
+		try{
 			PreparedStatement stmt = conn.prepareStatement("DELETE FROM PATIENT WHERE patient_id = ?");
 			stmt.setInt(1, patient_id);
 			return stmt.executeUpdate()>0?true:false;
@@ -108,10 +113,11 @@ public class DBConnection {
 	}
 
 	public static ResultSet searchPatient(int patient_id) {
-		try(Connection conn = getConnection()){
+		try {
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM patient WHERE patient_id = ?;");
 			stmt.setInt(1, patient_id);
 			ResultSet rs = stmt.executeQuery();
+			System.out.println("found patient");
 			return rs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

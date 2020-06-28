@@ -46,15 +46,35 @@ public class Administrator extends HttpServlet {
 			}
 			break;
 		case "delete":
-			deletePatient(request,response);
+			try {
+				deletePatient(request,response);
+			} catch (ServletException | IOException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
-		
 		}
 		
 	}
 	
-	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
+		if(request.getParameter("get")!=null) {
+		int patient_id; 
+		patient_id = Integer.parseInt(request.getParameter("ssn_id"));
+		ResultSet rs = DBConnection.searchPatient(patient_id);
+		if(!rs.next()) {
+			request.setAttribute("message","Patient does not exist");
+			RequestDispatcher rd = request.getRequestDispatcher("html/delete_patient.jsp");
+			rd.forward(request, response);		
+		}else {
+			request.setAttribute("patient",rs);
+			RequestDispatcher rd = request.getRequestDispatcher("html/delete_patient.jsp");
+			rd.forward(request, response);
+			}
+		}
+		
+		if(request.getParameter("delete")!=null) {
 		RequestDispatcher rd = null;
 		if(DBConnection.deletePatient(Integer.parseInt(request.getParameter("ssn_id")))) {
 			request.setAttribute("message", "Patient deleted successfully");
@@ -63,9 +83,27 @@ public class Administrator extends HttpServlet {
 		}
 		rd = request.getRequestDispatcher("html/delete_patient.jsp");
 		rd.forward(request, response);
+		}
 	}
 
 	private void updatePatient(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+		
+		if(request.getParameter("get")!=null) {
+			int patient_id; 
+			patient_id = Integer.parseInt(request.getParameter("ssn_id"));
+			ResultSet rs = DBConnection.searchPatient(patient_id);
+			if(!rs.next()) {
+				request.setAttribute("message","Patient does not exist");
+				RequestDispatcher rd = request.getRequestDispatcher("html/update_patient.jsp");
+				rd.forward(request, response);		
+			}else {
+				request.setAttribute("patient",rs);
+				RequestDispatcher rd = request.getRequestDispatcher("html/update_patient.jsp");
+				rd.forward(request, response);
+			}
+		}
+		
+		
 		int patient_id; String patient_name, address, city, state;
 		int age;
 		String date_of_joining;
@@ -74,6 +112,11 @@ public class Administrator extends HttpServlet {
 		patient_id = Integer.parseInt(request.getParameter("ssn_id"));
 		
 		ResultSet rs = DBConnection.searchPatient(patient_id);
+		if(!rs.next()) {
+			request.setAttribute("message","Patient does not exist");
+			RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
+			rd.forward(request, response);		
+		}else {
 		patient_name = request.getParameter("patient_name")==null?rs.getString("patient_name"):request.getParameter("patient_name");
 		age = Integer.parseInt(request.getParameter("patient_age")==null?""+rs.getInt("age"):request.getParameter("patient_age"));
 		date_of_joining =  request.getParameter("date_admission")==null?rs.getString("date_of_joining"):request.getParameter("date_admission");
@@ -88,7 +131,7 @@ public class Administrator extends HttpServlet {
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
 		rd.forward(request, response);
-
+		}
 		
 	}
 
@@ -115,4 +158,19 @@ public class Administrator extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+	private void searchPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		int patient_id; 
+		patient_id = Integer.parseInt(request.getParameter("ssn_id"));
+		ResultSet rs = DBConnection.searchPatient(patient_id);
+		if(!rs.next()) {
+			request.setAttribute("message","Patient does not exist");
+			RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
+			rd.forward(request, response);		
+		}else {
+			request.setAttribute("patient",rs);
+			RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
+			rd.forward(request, response);
+		}
+	}
 }
+
