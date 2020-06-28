@@ -6,7 +6,6 @@ create table patient(
     state varchar(15),
     age int(3),
     date_of_joining varchar(10),
-    date_of_joining varchar(10),
     room_type enum('general','semi','single')
 );
 
