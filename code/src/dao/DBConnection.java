@@ -73,4 +73,50 @@ public class DBConnection {
 		
 		return false;
 	}
+
+	public static boolean updatePatient(int patient_id, String patient_name, String address,String city,String state,int age, String date_of_joining,String room_type) {
+		try(Connection conn = getConnection()){
+			PreparedStatement stmt = conn.prepareStatement("UPDATE PATIENT SET patient_name = ? ,address = ? ,city = ? " + 
+					"    state = ?,age = ?, date_of_joining = ?, room_type = ? WHERE patient_id = ?");
+			stmt.setInt(8, patient_id);
+			stmt.setString(1, patient_name);
+			stmt.setString(2, address);
+			stmt.setString(3, city);
+			stmt.setString(4, state);
+			stmt.setInt(5, age);
+			stmt.setString(6,date_of_joining);
+			stmt.setString(7,room_type);
+			return stmt.executeUpdate()>0?true:false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+
+	public static boolean deletePatient(int patient_id) {
+		try(Connection conn = getConnection()){
+			PreparedStatement stmt = conn.prepareStatement("DELETE FROM PATIENT WHERE patient_id = ?");
+			stmt.setInt(1, patient_id);
+			return stmt.executeUpdate()>0?true:false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static ResultSet searchPatient(int patient_id) {
+		try(Connection conn = getConnection()){
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM patient WHERE patient_id = ?;");
+			stmt.setInt(1, patient_id);
+			ResultSet rs = stmt.executeQuery();
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return null;
+	}
 }

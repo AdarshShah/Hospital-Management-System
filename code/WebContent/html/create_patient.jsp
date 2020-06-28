@@ -85,9 +85,7 @@
 
 				<tr>
 					<td>City<sup>*</sup>: </td>
-					<td>
 						<td><input type="text" name="city"  required /></td>
-					</td>
 				</tr>
 
 			</tbody>
