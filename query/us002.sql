@@ -2,11 +2,16 @@ create table patient(
 	patient_id numeric primary key,
     patient_name varchar(15) NOT NULL,
     address varchar(50),
+    city varchar(15),
+    state varchar(15),
     age int(3),
-    date_of_joining date,
+    date_of_joining varchar(10),
+    date_of_joining varchar(10),
     room_type enum('general','semi','single')
 );
 
+select * from patient;
+truncate table patient;
 
 create table medicine(
 	medicine_id numeric primary key,
