@@ -33,7 +33,7 @@
             <li>
                 <form action="/HospitalManagementSystem/html/search_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Search</button></form>
             </li>
-            
+        </ul> 
     </div>
 <div class="reg-tab">
     <h2 align="center"><font><strong>Pharmacy</strong></font></h2>
