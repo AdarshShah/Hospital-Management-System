@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DBConnection;
 
 /**
- * Servlet implementation class Pharmacist
+ * Servlet implementation class Diagnostic
  */
-@WebServlet("/Pharmacist")
-public class Pharmacist extends HttpServlet {
+@WebServlet("/Diagnostic")
+public class Diagnostic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Pharmacist() {
+    public Diagnostic() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +34,24 @@ public class Pharmacist extends HttpServlet {
 		String function= request.getParameter("function");
 		switch(function) {
 		case "issue":
-			issueMedicine(request,response);
+			issueTest(request,response);
 			break;
 		}
 	}
 
-	private void issueMedicine(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void issueTest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int patient_id = request.getAttribute("patient_id")==null?10001:(Integer)request.getAttribute("patient_id");
-		String medicine = request.getParameter("medicine");
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		if(DBConnection.issueMedicine(patient_id,medicine,quantity)) {
+		String test = request.getParameter("test");
+		
+		if(DBConnection.issueTest(patient_id, test)) {
 			request.setAttribute("message", "");
 		}else {
-			request.setAttribute("message", "Please enter correct quantity");
+			request.setAttribute("message", "Please enter correct test");
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/html/issue_medicines.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/html/add_diagnostics.jsp");
 		rd.forward(request, response);
 
 	}
-	
-	
 
 }

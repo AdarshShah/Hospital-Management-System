@@ -219,4 +219,51 @@ public class DBConnection {
 		
 		return true;
 	}
+	
+	public static ResultSet getDiagnostics(int patient_id) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM  diagnostic;");
+			ResultSet rs = stmt.executeQuery();
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
+	public static ResultSet getIssuedDiagnostics(int patient_id) {
+		ResultSet rs=null;
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT *  FROM patient natural join patient_diagnostic natural join diagnostic where patient_id = ? ;");
+			stmt.setInt(1, patient_id);
+			rs = stmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public static boolean issueTest(int patient_id,String test) {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM  diagnostic where test_name = ?;");
+			stmt.setString(1, test.trim());
+			ResultSet rs = stmt.executeQuery();
+			if(!rs.next())
+				return false;
+			int test_id = rs.getInt("test_id");
+			PreparedStatement stmt1 = conn.prepareStatement("INSERT INTO patient_diagnostic VALUES(?,?)");
+			stmt1.setInt(1,patient_id);
+			stmt1.setInt(2, test_id);
+			stmt1.execute();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return true;
+	}
 }

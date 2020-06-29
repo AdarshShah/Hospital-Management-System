@@ -14,8 +14,7 @@
 		<h1>Hospital Management System</h1>
 	</div>
 
-    <h2>Pharmacy</h2>
-    	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
+    <h2>Diagnostics</h2>
     <table>
         <tr>
             <th>Patient Id</th>
@@ -29,8 +28,8 @@
         	int patient_id = request.getAttribute("patient_id")==null?10001:(Integer)request.getAttribute("patient_id");
         	ResultSet patient = DBConnection.searchPatient(patient_id);
         	request.setAttribute("patient_id",patient_id);
-        	ResultSet stock = DBConnection.getMedicines();
-        	ResultSet patMed = DBConnection.getIssuedMedicines(patient_id);
+        	ResultSet stock = DBConnection.getDiagnostics(patient_id);
+        	ResultSet patMed = DBConnection.getIssuedDiagnostics(patient_id);
         	
         	if(patient.next()){
         %>
@@ -44,58 +43,52 @@
         </tr>
         <%} %>
     </table>
-		
-    <h2>Medicines in Stock</h2>
-    <table id="medicinestock">
+
+    <h2>Diagnostics Available</h2>
+    <table id="availableDiagnostics">
         <tr>
-            <th>Medicine</th>
-            <th>Rate(in Rs)</th>
-            <th>Quantity</th>
+            <th>Name of test</th>
+            <th>Amount(in Rs.)</th>
         </tr>
         <%
         	while(stock.next()){
         %>
         <tr>
-            <td><%=stock.getString("medicine_name") %></td>
-            <td><%=stock.getString("rate") %></td>
-            <td><%=stock.getString("quantity_available") %></td>
+            <td><%=stock.getString("test_name") %></td>
+            <td><%=stock.getInt("rate") %></td>
         </tr>
-        <% } %>
-    </table>
+        <% } %>    
+        </table>
 
-    <h2>Medicines Issued</h2>
-    <table id="medicineTable">
+    <!-- <button class="button1">Add Diagnostics</button> -->
+
+    <h2>Diagnostics Conducted</h2>
+    <table id="testTable">
         <tr>
-            <th>Medicine</th>
-            <th>Quantity</th>
-            <th>Rate(in Rs)</th>
-            <th>Amount</th>
+            <th>Name of test</th>
+            <th>Amount(in Rs.)</th>
         </tr>
 		<%
 			while(patMed.next()){
 		%>
 		<tr>
-			<td><%=patMed.getString("medicine_name") %></td>
-			<td><%=patMed.getInt(2) %></td>
-			<td><%=patMed.getInt(3) %></td>
-			<td><%=patMed.getInt(4) %></td>
+			<td><%=patMed.getString("test_name") %></td>
+			<td><%=patMed.getInt("rate") %></td>
 		</tr>
 		
 		<%} %>
         <tbody>
         </tbody>
+
         <tfoot>
             <tr>
-            	<form method="post" action="/HospitalManagementSystem/Pharmacist">
-                <td><input type="text" name="medicine" required></td>
-                <td><input type="number" name="quantity" required></td>
-                <td></td>
+            	<form method="post" action="/HospitalManagementSystem/Diagnostic">
+                <td><input type="text" name="test"></td>
                 <td></td>
                 <td><button name="function" value="issue">Issue</button></td>
-               	</form>
+                </form>
             </tr>
         </tfoot>
     </table>                                                            
-
 </body>
 </html>
