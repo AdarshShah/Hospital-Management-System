@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,6 +38,19 @@ public class Diagnostic extends HttpServlet {
 		case "issue":
 			issueTest(request,response);
 			break;
+		case "forward":
+			request.setAttribute("patient_id",Integer.parseInt(request.getParameter("ssn_id")));
+			RequestDispatcher rd = request.getRequestDispatcher("html/add_diagnostics.jsp");
+			rd.forward(request, response);
+			break;
+		case "search":
+			try {
+				searchPatient(request, response);
+			} catch (ServletException | IOException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		}
 	}
 
@@ -52,6 +67,21 @@ public class Diagnostic extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/html/add_diagnostics.jsp");
 		rd.forward(request, response);
 
+	}
+	
+	private void searchPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+		int patient_id; 
+		patient_id = Integer.parseInt(request.getParameter("ssn_id"));
+		ResultSet rs = DBConnection.searchPatient(patient_id);
+		if(!rs.next()) {
+			request.setAttribute("message","Patient does not exist");
+			RequestDispatcher rd = request.getRequestDispatcher("html/search_diagnostic.jsp");
+			rd.forward(request, response);		
+		}else {
+			request.setAttribute("patient",rs);
+			RequestDispatcher rd = request.getRequestDispatcher("html/search_diagnostic.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 }

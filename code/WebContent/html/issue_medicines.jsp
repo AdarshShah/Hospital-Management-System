@@ -12,6 +12,32 @@
 <body>
 	<div class="head">
 		<h1>Hospital Management System</h1>
+		<ul >
+			<li>
+				<select class="select-menu">
+					<option value="patient">Patient</option>
+				</select>
+			</li>
+
+			<li>
+				<select class="select-menu">
+					<option value="pharmacy">Pharmacy</option>
+				</select>
+			</li>
+
+			<li>
+				<select class="select-menu">
+					<option value="diagnostics">Diagnostics</option>
+				</select>
+			</li>
+
+
+			<li>
+				<form action="/HospitalManagementSystem/html/search_medicine.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Search</button></form>
+			</li>
+
+		</ul>
+		
 	</div>
 
     <h2>Pharmacy</h2>

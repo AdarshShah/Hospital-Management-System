@@ -50,10 +50,10 @@ public class Login extends HttpServlet {
 				rd = request.getRequestDispatcher("html/create_patient.jsp");
 				break;
 			case "pharmacist":
-				rd = request.getRequestDispatcher("pharm.html");
+				rd = request.getRequestDispatcher("html/search_medicine.jsp");
 				break;
 			case "diagnostitian":
-				rd = request.getRequestDispatcher("diagn.html");
+				rd = request.getRequestDispatcher("html/search_diagnostic.jsp");
 				break;
 		}
 		rd.forward(request, response);
