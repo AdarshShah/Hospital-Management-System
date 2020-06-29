@@ -137,13 +137,26 @@ public class DBConnection {
 		return null;
 	}
 
+	public static ResultSet getIssuedMedicines(int patient_id) {
+		ResultSet rs=null;
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT medicine_name, quantity, rate, quantity*rate  FROM patient natural join patient_medicine natural join medicine where patient_id = ? ;");
+			stmt.setInt(1, patient_id);
+			rs = stmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	public static ResultSet[] getBillDetails(int patient_id) {
 		ResultSet rs[] = new ResultSet[3];
 		
 		rs[0] = searchPatient(patient_id);
 		
 		try {
-			PreparedStatement stmt = conn.prepareStatement("SELECT medicine_name, quantity, rate, medicine_name*rate  FROM patient natural join patient_medicine natural join medicine;");
+			PreparedStatement stmt = conn.prepareStatement("SELECT medicine_name, quantity, rate, medicine_name*rate  FROM patient natural join patient_medicine natural join medicine where patient_id = ? ;");
 			stmt.setInt(1, patient_id);
 			rs[1] = stmt.executeQuery();
 		} catch (SQLException e) {
@@ -152,7 +165,7 @@ public class DBConnection {
 		}
 		
 		try {
-			PreparedStatement stmt = conn.prepareStatement("SELECT test_name, rate  FROM patient natural join patient_diagnostic natural join diagnostic;");
+			PreparedStatement stmt = conn.prepareStatement("SELECT test_name, rate  FROM patient natural join patient_diagnostic natural join diagnostic where patient_id = ? ;");
 			stmt.setInt(1, patient_id);
 			rs[2] = stmt.executeQuery();
 		} catch (SQLException e) {
@@ -160,5 +173,50 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+
+	public static ResultSet getMedicines() {
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM  medicine;");
+			ResultSet rs = stmt.executeQuery();
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
+	public static boolean issueMedicine(int patient_id, String medicine, int quantity) {
+		// TODO Auto-generated method stub
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM  medicine where medicine_name = ?;");
+			stmt.setString(1, medicine.trim());
+			ResultSet rs = stmt.executeQuery();
+			if(!rs.next())
+				return false;
+			int available = rs.getInt("quantity_available");
+			int medicine_id = rs.getInt("medicine_id");
+			if(available<quantity)
+				return false;
+			available = available-quantity;
+			PreparedStatement stmt1 = conn.prepareStatement("INSERT INTO patient_medicine VALUES(?,?,?)");
+			stmt1.setInt(1,patient_id);
+			stmt1.setInt(2, medicine_id);
+			stmt1.setInt(3, quantity);
+			stmt1.execute();
+			
+			PreparedStatement stmt2 = conn.prepareStatement("UPDATE medicine SET quantity_available = ? WHERE medicine_id = ? ;");
+			stmt2.setInt(1, available);
+			stmt2.setInt(2, medicine_id);
+			
+			stmt2.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return true;
 	}
 }

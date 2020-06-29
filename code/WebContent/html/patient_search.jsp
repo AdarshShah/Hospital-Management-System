@@ -40,11 +40,8 @@
 				<form action="/HospitalManagementSystem/html/delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
 			</li>
 			<li>
-				<form action="/HospitalManagementSystem/html/view_table.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To View</button></form>
+				<form action="/HospitalManagementSystem/html/view_table.jsp" method="post"><button type="Submit" id="func2" class=" btn"> View All</button></form>
 			</li>
-
-
-
 		</ul>
 	</div>
 	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
@@ -75,7 +72,7 @@
 			<tbody>
 				<tr>
 					<td>Patient ID<sup>*</sup>:</td>
-					<td><input type="Search" name="ssn_id" value="<%=patient_id %>" required /></td>
+					<td><input type="Search" name="ssn_id" value="<%=patient_id %>" required /><form action="/HospitalManagementSystem/html/bill.jsp" method="post"><button type="Submit" id="func2" class=" btn"> Generate Bill</button></form></td>
 				</tr>
 				<tr>
 					<td>Patient Name: </td>
@@ -131,3 +128,4 @@
 	</form>
 </body>
 </html>
+

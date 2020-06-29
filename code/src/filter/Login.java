@@ -21,8 +21,7 @@ import javax.servlet.http.HttpSession;
 	"/html/delete_patient.jsp",
 	"/html/update_patient.jsp",
 	"/html/view_table.jsp",
-	"/html/search_patient.jsp",
-	"/html/issue_medicines.jsp"
+	"/html/search_patient.jsp"
 	})
 public class Login implements Filter {
 
