@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hospital Management System</title>
+<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/style.css">
+
+</head>
+<body>
+	<div class="head">
+		<h1>Hospital Management System</h1>
+	</div>
+
+    <h2>Diagnostics</h2>
+    <table>
+        <tr>
+            <th>Patient Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>DOJ</th>
+            <th>Type of Room</th>
+        </tr>
+        <tr>
+            <td>1234</td>
+            <td>Joseph</td>
+            <td>56</td>
+            <td>Rick Street</td>
+            <td>03-May-2020</td>
+            <td>Single</td>
+        </tr>
+    </table>
+
+    <h2>Diagnostics Available</h2>
+    <table id="availableDiagnostics">
+        <tr>
+            <th>Name of test</th>
+            <th>Amount(in Rs.)</th>
+        </tr>
+        <tr>
+            <td>CBP</td>
+            <td>2000</td>
+        </tr>
+
+        <tr>
+            <td>Lipid</td>
+            <td>1500</td>
+        </tr>
+    </table>
+
+    <!-- <button class="button1">Add Diagnostics</button> -->
+
+    <h2>Diagnostics Conducted</h2>
+    <table id="testTable">
+        <tr>
+            <th>Name of test</th>
+            <th>Amount(in Rs.)</th>
+        </tr>
+
+        <tbody>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td><input type="text" id="nameOfTest"></td>
+                <td></td>
+                <td><input type="button" onclick="Add()" value="Add" /></td>
+            </tr>
+        </tfoot>
+    </table>                                                            
+
+    <button class="button1">Update</button>
+</body>
+<script>
+    function Add() {
+        // Fetching the elements to insert in a new row
+        var nameOfTest = document.getElementById("nameOfTest");
+
+        var table = document.getElementById('availableDiagnostics');
+        let isvalid = false;
+        for (i = 1; i < table.rows.length; i++) {
+            var objCells = table.rows.item(i).cells;
+
+            availableDiagnostics = objCells.item(0).innerHTML;
+            amount = Number(objCells.item(1).innerHTML);
+
+            if(nameOfTest.value == availableDiagnostics){
+                console.log("Hey")
+                AddRow(nameOfTest.value, amount);
+                isvalid = true
+                break;
+            }
+            
+        }
+        if(isvalid == false){
+            alert("Selected diagnosis is currently not provided at our hospital");
+        }
+
+        // Resetting the input box to null values
+        nameOfTest.value = "";
+
+    };
+
+
+    function AddRow(nameOfTest, amount) {
+
+        var tBody = document.getElementById("testTable").getElementsByTagName("tbody")[0];
+        row = tBody.insertRow(-1);
+
+        var cell = row.insertCell(-1);
+        cell.innerHTML = nameOfTest;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = amount;
+    }
+</script>
+</html>
