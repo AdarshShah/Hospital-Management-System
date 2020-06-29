@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Search Patient</title>
-	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/search_patient.css">
+	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/create_patient.css">
 </head>
 <body>
 	<div class="head">
