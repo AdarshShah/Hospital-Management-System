@@ -35,6 +35,7 @@ h1{
 }
 h2{
 	margin-top: 2px;
+	text-align: center;
 }
 input{
 	margin-left: 20px;
@@ -43,4 +44,28 @@ input{
 body{
 	margin: 0;
 	background-color: #3498DB;
+}
+
+table {
+	border-collapse: collapse;
+	width: 80%;
+	vertical-align: center;
+	margin: 0px auto; 
+	margin-bottom: 50px;
+}
+
+table td, table th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+table th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	background-color: #505050;
+	color: white;
+}
+table tr{
+	background-color: white;
 }
