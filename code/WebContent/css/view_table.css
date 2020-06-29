@@ -26,6 +26,10 @@
 .btn:hover{
 	cursor: pointer;
 }
+#issue-btn{
+	background-color: #3498DB;
+	border: none;
+}
 
 .btn{
 	padding: 10px 15px;
@@ -50,6 +54,7 @@
 	margin: 0px 350px 0px auto;
 	padding: 0px;
 }
+
 .table1{
 	width: 90%;
 }
