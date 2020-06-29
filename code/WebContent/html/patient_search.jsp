@@ -45,7 +45,7 @@
 		</ul>
 	</div>
 	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
-	<form class="reg-tab" action="/HospitalManagementSystem/html/view_table.jsp" method="post">
+	<form class="reg-tab" action="/HospitalManagementSystem/Administrator" method="post">
 		
 		<% 	
 		int patient_id=0; String patient_name="", address="", city="", state="";
@@ -122,7 +122,7 @@
 
 			</tbody>
 		</table>
-		<input type="hidden" value="delete" name="function">
+		<input type="hidden" value="search" name="function">
 		<button class="btn" type="Submit" name="search" value="Search">Search</button>
 		<button class="btn" type="Reset">Reset</button><br>
 	</form>

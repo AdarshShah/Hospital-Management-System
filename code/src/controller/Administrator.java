@@ -53,6 +53,14 @@ public class Administrator extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+		case "search":
+			try {
+				searchPatient(request,response);
+			} catch (ServletException | IOException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		}
 		
 	}
@@ -164,11 +172,11 @@ public class Administrator extends HttpServlet {
 		ResultSet rs = DBConnection.searchPatient(patient_id);
 		if(!rs.next()) {
 			request.setAttribute("message","Patient does not exist");
-			RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("html/patient_search.jsp");
 			rd.forward(request, response);		
 		}else {
 			request.setAttribute("patient",rs);
-			RequestDispatcher rd = request.getRequestDispatcher("html/create_patient.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("html/patient_search.jsp");
 			rd.forward(request, response);
 		}
 	}

@@ -50,7 +50,7 @@ public class DBConnection {
 	public static void LoggedInTime(String username,String password) {
 		try{
 			PreparedStatement stmt = conn.prepareStatement("UPDATE USERSTORE SET logintime = ? WHERE login like ?");
-			stmt.setString(1, new Date(0).toGMTString());
+			stmt.setString(1, new Date(0).toString());
 			stmt.setString(2, username);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
