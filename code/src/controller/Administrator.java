@@ -61,10 +61,19 @@ public class Administrator extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+		case "bill":
+			generateBill(request,response);
 		}
 		
 	}
 	
+	private void generateBill(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		int patient_id = Integer.parseInt(request.getParameter("ssn_id"));
+		ResultSet patient = DBConnection.searchPatient(patient_id);
+		
+	}
+
 	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		// TODO Auto-generated method stub
 		if(request.getParameter("get")!=null) {

@@ -72,7 +72,7 @@
 			<tbody>
 				<tr>
 					<td>Patient ID<sup>*</sup>:</td>
-					<td><input type="Search" name="ssn_id" value="<%=patient_id %>" required /><form action="/HospitalManagementSystem/html/bill.jsp" method="post"><button type="Submit" id="func2" class=" btn"> Generate Bill</button></form></td>
+					<td><input type="Search" name="ssn_id" value="<%=patient_id %>" required /><form action="/HospitalManagementSystem/Administartor" method="post"><button type="Submit" id="func2" name="function" value="bill" class=" btn"> Generate Bill</button></form></td>
 				</tr>
 				<tr>
 					<td>Patient Name: </td>
