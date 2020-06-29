@@ -67,11 +67,17 @@ public class Administrator extends HttpServlet {
 		
 	}
 	
-	private void generateBill(HttpServletRequest request, HttpServletResponse response) {
+	private void generateBill(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int patient_id = Integer.parseInt(request.getParameter("ssn_id"));
 		ResultSet patient = DBConnection.searchPatient(patient_id);
-		
+		ResultSet medicines = DBConnection.getIssuedMedicines(patient_id);
+		ResultSet tests = DBConnection.getDiagnostics(patient_id);
+		request.setAttribute("patient", patient);
+		request.setAttribute("medicines", medicines);
+		request.setAttribute("tests", tests);
+		RequestDispatcher rd = request.getRequestDispatcher("html/billing_details.jsp");
+		rd.forward(request, response);
 	}
 
 	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

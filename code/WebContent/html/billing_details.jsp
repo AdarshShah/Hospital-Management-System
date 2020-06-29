@@ -1,3 +1,9 @@
+<%@page import="java.time.Period"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.concurrent.TimeUnit"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="dao.DBConnection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -58,19 +64,46 @@
             <td class="td">Type of Room</td>
         </tr>
             
-        <tr>
-            <td>1234</td>
-            <td>Joseph</td>
-            <td>56</td>
-            <td>Rick Street</td>
-            <td>03-May-2020</td>
-            <td>10-May-2020</td>
-            <td>Single</td>
-        </tr>
+         <%
+         	ResultSet patient = (ResultSet)request.getAttribute("patient");
+         	ResultSet patMed = (ResultSet)request.getAttribute("medicines");
+         	ResultSet test = (ResultSet)request.getAttribute("tests");
+         	
+         	if(patient.next()){
+                %>
+                <tr>
+                    <td><%=patient.getInt(1) %></td>
+                    <td><%=patient.getString(2) %></td>
+                    <td><%=patient.getInt(6) %></td>
+                    <td><%=patient.getString(3) %></td>
+                    <td><%=patient.getString(7) %></td>
+                    <td><%=new Date().toString() %></td>
+                    <td><%=patient.getString(8) %></td>
+                </tr>
+                <%} %>
     </table>
+    <%
+    	String date = patient.getString(7);
+    	int year = Integer.parseInt(date.substring(0,4));
+    	int mon = Integer.parseInt(date.substring(5,7));
+    	int day = Integer.parseInt(date.substring(8));
+    	LocalDate begin = LocalDate.of(year,mon,day);
+    	LocalDate today = LocalDate.now();
+    	
+    	Period p = Period.between(today, begin);
+    	
+    	long days = -1*p.getDays();
+    	
+    	long amount=0;
+    	switch(patient.getString(8)){
+    	case "general": amount=days*2000; break;
+    	case "semi": amount=days*4000; break;
+    	case "single": amount=days*8000; break;
+    	}
+    %>
      <div class="bill-gen">
-        <b>No. of days: </b><span> 7</span>
-        <b> Bill for room: </b><span> Rs. 56000</span>
+        <b>No. of days: </b><span><%=days %></span>
+        <b> Bill for room: </b><span> Rs. <%=amount %></span>
     </div>
     <br>
 </div>
@@ -83,15 +116,23 @@
             <td class="td">Rate(in Rs.)</td>
             <td class="td">Amount(in Rs.)</td>
         </tr>
-        <tr>
-            <td>Acebutol</td>
-            <td>10</td>
-            <td>55</td>
-            <td>550</td>
-        </tr>
+       <%
+       		long amountMed =0;
+			while(patMed.next()){
+				
+				amountMed+=patMed.getInt(4);
+		%>
+		<tr>
+			<td><%=patMed.getString("medicine_name") %></td>
+			<td><%=patMed.getInt(2) %></td>
+			<td><%=patMed.getInt(3) %></td>
+			<td><%=patMed.getInt(4) %></td>
+		</tr>
+		
+		<%} %>
     </table>
     <div class="bill-gen">
-        <b>Bill for Pharmacy: </b><span> Rs.4500</span>
+        <b>Bill for Pharmacy: </b><span><%=amountMed %></span>
     </div>
     <br>
 </div>
@@ -102,18 +143,26 @@
             <td class="td">Name of test</td>
             <td class="td">Amount(in Rs.)</td>
         </tr>
-        <tr>
-            <td>CBP</td>
-            <td>2000</td>
-        </tr>
+        <%
+        	long testAmt=0;
+			while(test.next()){
+				
+				testAmt+=test.getInt("rate");
+		%>
+		<tr>
+			<td><%=test.getString("test_name") %></td>
+			<td><%=test.getInt("rate") %></td>
+		</tr>
+		
+		<%} %>
     </table>
     <div class="bill-gen">
-        <b>Bill for Diagnostics: </b><span> Rs.10500</span>
+        <b>Bill for Diagnostics: </b><span><%=testAmt %></span>
     </div>
     <br>                                               
     <div>    
         <button class="btn">Confirm</button>
-        <b>Grand Total:</b> <span>Rs 71000</span>
+        <b>Grand Total:</b> <span>Rs <%=amount+testAmt+amountMed %></span>
     </div>
 </div>
 </body>
