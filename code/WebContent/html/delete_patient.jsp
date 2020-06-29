@@ -39,7 +39,9 @@
 			<li>
 				<form action="/HospitalManagementSystem/html/patient_search.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Search</button></form>
 			</li>
-
+			<li>
+				<form action="/HospitalManagementSystem/html/view_table.jsp" method="post"><button type="Submit" id="func2" class=" btn"> View All</button></form>
+			</li>
 
 		</ul>
 	</div>

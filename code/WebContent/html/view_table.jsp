@@ -1,10 +1,12 @@
+<%@page import="dao.DBConnection"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%> 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create Patient</title>
-	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table1.css">
+	<title>View All Patient</title>
+	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table.css">
 </head>
 <body>
 	<div class="head">
@@ -34,23 +36,24 @@
 				<form action="/HospitalManagementSystem/html/update_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Update</button></form>
 			</li>
 			<li>
-				<form action="/HospitalManagementSystem/html/patient_search.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Search</button></form>
-			</li>
-			<li>
 				<form action="/HospitalManagementSystem/html/delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
 			</li>
+			<li>
+				<form action="/HospitalManagementSystem/html/patient_search.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Search</button></form>
+			</li>
+			
 		</ul>
 	</div>
-	<form class="reg-tab" action="/HospitalManagementSystem/html/search_patient.jsp" method="post">
+	<form class="reg-tab" action="/HospitalManagementSystem/html/patient_search.jsp" method="post">
 <h2 align="center"><font><strong>View Patients</strong></font></h2>
 <table class="table1">
 	<tr> 
-		<td class="td"> patient Id</td>
+		<td class="td"> Patient Id</td>
 		<td class="td"> Name</td>
 		<td class="td"> Age</td>
 		<td class="td"> Address</td>
 		<td class="td"> DOJ</td>
-		<td class="td"> type of room</td>
+		<td class="td"> Type of room</td>
 	</tr>
 		<% 
 				ResultSet rs = DBConnection.getAllPatients();
