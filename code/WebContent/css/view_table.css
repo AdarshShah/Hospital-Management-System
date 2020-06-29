@@ -26,6 +26,10 @@
 .btn:hover{
 	cursor: pointer;
 }
+#issue-btn{
+	background-color: #3498DB;
+	border: none;
+}
 
 .btn{
 	padding: 10px 15px;
@@ -37,7 +41,9 @@
 	font-size: 12px;
 	font-weight: bold;
 }
-
+#testTable{
+	margin-left: 27%;
+}
 .table1,.table2,.table3{
 	margin-left: auto;
 	margin-right: auto;
@@ -50,6 +56,7 @@
 	margin: 0px 350px 0px auto;
 	padding: 0px;
 }
+
 .table1{
 	width: 90%;
 }

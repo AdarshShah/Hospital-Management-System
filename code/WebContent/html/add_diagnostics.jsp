@@ -6,10 +6,11 @@
 <html>
 <head>
 <title>Hospital Management System</title>
-<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table.css">
 
 </head>
 <body>
+
 	<div class="head">
 		<h1>Hospital Management System</h1>
 		<ul >
@@ -39,25 +40,41 @@
 		</ul>
 		
 	</div>
+            <li>
+                <select class="select-menu">
+                    <option value="pharmacy">Pharmacy</option>
+                </select>
+            </li>
 
-    <h2>Diagnostics</h2>
-    <table>
+            <li>
+                <select class="select-menu">
+                    <option value="diagnostics">Diagnostics</option>
+                </select>
+            </li>
+            <li>
+                <form action="/HospitalManagementSystem/html/search_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Search</button></form>
+            </li>
+        </ul> 
+    </div>
+<div class="reg-tab">
+    <h2 align="center"><font><strong>Diagnostics</strong></font></h2>
+    <table class="table1">
         <tr>
-            <th>Patient Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Address</th>
-            <th>DOJ</th>
-            <th>Type of Room</th>
+            <td class="td">Patient Id</td>
+            <td class="td">Name</td>
+            <td class="td">Age</td>
+            <td class="td">Address</td>
+            <td class="td">DOJ</td>
+            <td class="td">Type of Room</td>
         </tr>
         <%
-        	int patient_id = request.getAttribute("patient_id")==null?10001:(Integer)request.getAttribute("patient_id");
-        	ResultSet patient = DBConnection.searchPatient(patient_id);
-        	request.setAttribute("patient_id",patient_id);
-        	ResultSet stock = DBConnection.getDiagnostics(patient_id);
-        	ResultSet patMed = DBConnection.getIssuedDiagnostics(patient_id);
-        	
-        	if(patient.next()){
+            int patient_id = request.getAttribute("patient_id")==null?10001:(Integer)request.getAttribute("patient_id");
+            ResultSet patient = DBConnection.searchPatient(patient_id);
+            request.setAttribute("patient_id",patient_id);
+            ResultSet stock = DBConnection.getDiagnostics(patient_id);
+            ResultSet patMed = DBConnection.getIssuedDiagnostics(patient_id);
+            
+            if(patient.next()){
         %>
         <tr>
             <td><%=patient.getInt(1) %></td>
@@ -69,15 +86,16 @@
         </tr>
         <%} %>
     </table>
-
-    <h2>Diagnostics Available</h2>
-    <table id="availableDiagnostics">
+</div>
+<div class="reg-tab">
+    <h2 align="center"><font><strong>Diagnostics Available</strong></font></h2>
+    <table id="availableDiagnostics" class="table2">
         <tr>
-            <th>Name of test</th>
-            <th>Amount(in Rs.)</th>
+            <td class="td">Name of test</td>
+            <td class="td">Amount(in Rs.)</td>
         </tr>
         <%
-        	while(stock.next()){
+            while(stock.next()){
         %>
         <tr>
             <td><%=stock.getString("test_name") %></td>
@@ -85,36 +103,37 @@
         </tr>
         <% } %>    
         </table>
-
-    <!-- <button class="button1">Add Diagnostics</button> -->
-
-    <h2>Diagnostics Conducted</h2>
-    <table id="testTable">
+</div>
+<div class="reg-tab">
+    <h2 align="center"><font><strong>Diagnostics Conducted</strong></font></h2>
+    <table id="testTable" class="table2">
         <tr>
-            <th>Name of test</th>
-            <th>Amount(in Rs.)</th>
+            <td class="td">Name of test</td>
+            <td class="td">Amount(in Rs.)</td>
         </tr>
-		<%
-			while(patMed.next()){
-		%>
-		<tr>
-			<td><%=patMed.getString("test_name") %></td>
-			<td><%=patMed.getInt("rate") %></td>
-		</tr>
-		
-		<%} %>
+        <%
+            while(patMed.next()){
+        %>
+        <tr>
+            <td><%=patMed.getString("test_name") %></td>
+            <td><%=patMed.getInt("rate") %></td>
+        </tr>
+        
+        <%} %>
         <tbody>
         </tbody>
 
         <tfoot>
             <tr>
-            	<form method="post" action="/HospitalManagementSystem/Diagnostic">
+                <form method="post" action="/HospitalManagementSystem/Diagnostic">
                 <td><input type="text" name="test"></td>
                 <td></td>
-                <td><button name="function" value="issue">Issue</button></td>
+                <td id="issue-btn"><button name="function" value="issue" class="btn">Issue</button></td>
                 </form>
             </tr>
         </tfoot>
-    </table>                                                            
+    </table>                                             
+    <br><br>
+</div>            
 </body>
 </html>

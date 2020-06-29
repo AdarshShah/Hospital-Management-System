@@ -6,10 +6,11 @@
 <html>
 <head>
 <title>Hospital Management System</title>
-<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table.css">
 
 </head>
 <body>
+
 	<div class="head">
 		<h1>Hospital Management System</h1>
 		<ul >
@@ -39,26 +40,42 @@
 		</ul>
 		
 	</div>
+            <li>
+                <select class="select-menu">
+                    <option value="pharmacy">Pharmacy</option>
+                </select>
+            </li>
 
-    <h2>Pharmacy</h2>
-    	<h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
-    <table>
+            <li>
+                <select class="select-menu">
+                    <option value="diagnostics">Diagnostics</option>
+                </select>
+            </li>
+            <li>
+                <form action="/HospitalManagementSystem/html/search_patient.jsp" method="post"><button type="Submit" id="func1" class="btn"> To Search</button></form>
+            </li>
+        </ul> 
+    </div>
+<div class="reg-tab">
+    <h2 align="center"><font><strong>Pharmacy</strong></font></h2>
+        <h3 style="color:red"><%= request.getAttribute("message")==null?"":request.getAttribute("message") %></h3>
+    <table class="table1">
         <tr>
-            <th>Patient Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Address</th>
-            <th>DOJ</th>
-            <th>Type of Room</th>
+            <td class="td">Patient Id</td>
+            <td class="td">Name</td>
+            <td class="td">Age</td>
+            <td class="td">Address</td>
+            <td class="td">DOJ</td>
+            <td class="td">Type of Room</td>
         </tr>
         <%
-        	int patient_id = request.getAttribute("patient_id")==null?10001:(Integer)request.getAttribute("patient_id");
-        	ResultSet patient = DBConnection.searchPatient(patient_id);
-        	request.setAttribute("patient_id",patient_id);
-        	ResultSet stock = DBConnection.getMedicines();
-        	ResultSet patMed = DBConnection.getIssuedMedicines(patient_id);
-        	
-        	if(patient.next()){
+            int patient_id = request.getAttribute("patient_id")==null?10001:(Integer)request.getAttribute("patient_id");
+            ResultSet patient = DBConnection.searchPatient(patient_id);
+            request.setAttribute("patient_id",patient_id);
+            ResultSet stock = DBConnection.getMedicines();
+            ResultSet patMed = DBConnection.getIssuedMedicines(patient_id);
+            
+            if(patient.next()){
         %>
         <tr>
             <td><%=patient.getInt(1) %></td>
@@ -70,16 +87,17 @@
         </tr>
         <%} %>
     </table>
-		
-    <h2>Medicines in Stock</h2>
-    <table id="medicinestock">
+</div>
+<div class="reg-tab">       
+    <h2 align="center"><font><strong>Medicines in Stock</strong></font></h2>
+    <table id="medicinestock" class="table2">
         <tr>
-            <th>Medicine</th>
-            <th>Rate(in Rs)</th>
-            <th>Quantity</th>
+            <td class="td">Medicine</td>
+            <td class="td">Rate(in Rs)</td>
+            <td class="td">Quantity</td>
         </tr>
         <%
-        	while(stock.next()){
+            while(stock.next()){
         %>
         <tr>
             <td><%=stock.getString("medicine_name") %></td>
@@ -88,40 +106,43 @@
         </tr>
         <% } %>
     </table>
-
-    <h2>Medicines Issued</h2>
-    <table id="medicineTable">
+</div>
+<div class="reg-tab">
+    <h2 align="center"><font><strong>Medicines Issued</strong></font></h2>
+    <table id="medicineTable" class="table2">
         <tr>
-            <th>Medicine</th>
-            <th>Quantity</th>
-            <th>Rate(in Rs)</th>
-            <th>Amount</th>
+            <td class="td">Medicine</td>
+            <td class="td">Quantity</td>
+            <td class="td">Rate(in Rs)</td>
+            <td class="td">Amount</td>
         </tr>
-		<%
-			while(patMed.next()){
-		%>
-		<tr>
-			<td><%=patMed.getString("medicine_name") %></td>
-			<td><%=patMed.getInt(2) %></td>
-			<td><%=patMed.getInt(3) %></td>
-			<td><%=patMed.getInt(4) %></td>
-		</tr>
-		
-		<%} %>
+        <%
+            while(patMed.next()){
+        %>
+        <tr>
+            <td><%=patMed.getString("medicine_name") %></td>
+            <td><%=patMed.getInt(2) %></td>
+            <td><%=patMed.getInt(3) %></td>
+            <td><%=patMed.getInt(4) %></td>
+        </tr>
+        
+        <%} %>
         <tbody>
         </tbody>
         <tfoot>
             <tr>
-            	<form method="post" action="/HospitalManagementSystem/Pharmacist">
+                <form method="post" action="/HospitalManagementSystem/Pharmacist">
                 <td><input type="text" name="medicine" required></td>
                 <td><input type="number" name="quantity" required></td>
                 <td></td>
                 <td></td>
-                <td><button name="function" value="issue">Issue</button></td>
-               	</form>
+                <td id="issue-btn"><button name="function" value="issue"  class="btn">Issue</button></td>
+                </form>
             </tr>
         </tfoot>
-    </table>                                                            
+    </table>
+    <br><br>
+</div>  
 
 </body>
 </html>
