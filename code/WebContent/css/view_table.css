@@ -37,23 +37,29 @@
 	font-size: 12px;
 	font-weight: bold;
 }
-body{
-	margin: 0;
-	background-color: #3498DB;
-}
-h1{
-	margin: 0;
-}
-li{
-	display: inline-block;
-	margin: 0 3%;
-}
-.table1{
+
+.table1,.table2,.table3{
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	border-collapse: collapse;
 	padding 5px 20px 5px 20px;
+}
+.bill-gen{
+	width: 30%;
+	margin: 0px 350px 0px auto;
+	padding: 0px;
+}
+.table1{
+	width: 90%;
+}
+
+.table2{
+	width: 60%;
+}
+
+.table3{
+	width: 35%;
 }
 .td{
 	background-color: #505050;
@@ -77,4 +83,18 @@ h2{
 	margin-top: 2px;
 	margin-bottom: 2%;
 	text-align: center;
+}
+body{
+	margin: 0;
+	background-color: #3498DB;
+}
+h1{
+	margin: 0;
+}
+li{
+	display: inline-block;
+	margin: 0 3%;
+}
+span{
+	margin-right: 50px;
 }
