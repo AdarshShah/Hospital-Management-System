@@ -41,7 +41,9 @@
 	font-size: 12px;
 	font-weight: bold;
 }
-
+#testTable{
+	margin-left: 27%;
+}
 .table1,.table2,.table3{
 	margin-left: auto;
 	margin-right: auto;
