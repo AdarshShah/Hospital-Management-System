@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>Hospital Management System</title>
-<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/style.css">
+<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table.css">
 
 </head>
 <body>
