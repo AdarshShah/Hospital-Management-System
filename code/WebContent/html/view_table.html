@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Create Patient</title>
-	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table1.css">
+	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/view_table.css">
 </head>
 <body>
 	<div class="head">
@@ -39,9 +39,10 @@
 			<li>
 				<form action="/HospitalManagementSystem/html/delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
 			</li>
-		</ul>
+
+
+	</ul>
 	</div>
-	<form class="reg-tab" action="/HospitalManagementSystem/html/search_patient.jsp" method="post">
 <h2 align="center"><font><strong>View Patients</strong></font></h2>
 <table class="table1">
 	<tr> 
@@ -52,22 +53,13 @@
 		<td class="td"> DOJ</td>
 		<td class="td"> type of room</td>
 	</tr>
-		<% 
-				ResultSet rs = DBConnection.getAllPatients();
-				while(rs.next()){
-				%>
 	<tr>
-		<td ><%=rs.getInt(1) %></td>
-		<td ><%=rs.getString(2) %></td>
-		<td ><%=rs.getInt(6) %></td>
-		<td ><%= rs.getString(3)+", "+ rs.getString("city")+","+rs.getString("state") %></td>
-		<td ><%=rs.getString(7) %></td>
-		<td ><%=rs.getString(8) %></td>
+		<td > 1234</td>
+		<td >Joseph</td>
+		<td >56</td>
+		<td >Rick Street_Ameertpet, Hyderabad</td>
+		<td >03-May-2020</td>
+		<td >single</td>
 	</tr>
-		<% }; %>
 
 </table>
-<button class="btn" type="Submit">Done</button>
-	</form>
-</body>
-</html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Search Patient</title>
-	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/create_patient.css">
+	<link rel="stylesheet" type="text/css" href="/HospitalManagementSystem/css/search_patient.css">
 </head>
 <body>
 	<div class="head">
@@ -38,6 +38,9 @@
 			</li>
 			<li>
 				<form action="/HospitalManagementSystem/html/delete_patient.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To Delete</button></form>
+			</li>
+			<li>
+				<form action="/HospitalManagementSystem/html/view_table.jsp" method="post"><button type="Submit" id="func2" class=" btn"> To View</button></form>
 			</li>
 
 
